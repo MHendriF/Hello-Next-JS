@@ -1,22 +1,17 @@
+import ProductView from "@/views/product";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-type productType = {
-  id: string;
-  name: number;
-  price: number;
-  size: string;
-};
-
 export default function Product() {
-  const [isLogin, isSetLogin] = useState(false);
+  const [isLogin, isSetLogin] = useState(true);
   const [products, setProducts] = useState([]);
   const { push } = useRouter();
-  // useEffect(() => {
-  //   if (!isLogin) {
-  //     push("/auth/login");
-  //   }
-  // }, []);
+
+  useEffect(() => {
+    if (!isLogin) {
+      push("/auth/login");
+    }
+  }, []);
 
   useEffect(() => {
     fetch("/api/product")
@@ -28,11 +23,8 @@ export default function Product() {
   }, []);
 
   return (
-    <div>
-      <h1>Product</h1>
-      {products.map((product: productType) => (
-        <div key={product.id}>{product.name}</div>
-      ))}
-    </div>
+    <>
+      <ProductView products={products} />
+    </>
   );
 }
