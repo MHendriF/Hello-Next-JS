@@ -1,21 +1,14 @@
+import { ProductType } from "@/types/product.type";
 import styles from "./Product.module.scss";
 
-type productType = {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  image: string;
-};
-
-export default function ProductView({ products }: { products: productType[] }) {
+export default function ProductView({ products }: { products: ProductType[] }) {
   return (
     <div className={styles.product}>
       <h1 className={styles.product__title}>Product</h1>
       <div className={styles.product__content}>
         {products.length > 0 ? (
           <>
-            {products.map((product: productType) => (
+            {products.map((product: ProductType) => (
               <div key={product.id} className={styles.product__content__item}>
                 <img
                   src={product.image}
