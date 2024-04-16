@@ -72,7 +72,7 @@ export default function LoginView() {
             className={styles.login__form__button}
             disabled={isLoading}
           >
-            {isLoading ? "Loading..." : "Register"}
+            {isLoading ? "Loading..." : "Login"}
           </button>
         </form>
         <button
