@@ -1,5 +1,6 @@
 import { ProductType } from "@/types/product.type";
 import styles from "./DetailProduct.module.scss";
+import Image from "next/image";
 
 export default function DetailProductView({
   product,
@@ -10,9 +11,11 @@ export default function DetailProductView({
     <>
       <h1 className={styles.title}>Detail Product</h1>
       <div className={styles.productDetail}>
-        <img
+        <Image
           src={product.image}
           alt={product.name}
+          width={500}
+          height={500}
           className={styles.productDetail__content__item__image}
         />
         <h4 className={styles.productDetail__content__item__name}>
