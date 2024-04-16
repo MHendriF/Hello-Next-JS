@@ -1,6 +1,7 @@
 import { fetcher } from "@/lib/swr/fetcher";
 import { ProductType } from "@/types/product.type";
 import DetailProductView from "@/views/detailProduct";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
@@ -10,6 +11,7 @@ export default function DetailProductPage({
   product: ProductType;
 }) {
   const { query } = useRouter();
+  const { data }: any = useSession();
 
   // client-side
   // const { data, error, isLoading } = useSWR(
