@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./Login.module.scss";
 import { useRouter } from "next/router";
 
-export default function LoginViews() {
+export default function LoginView() {
   const { push } = useRouter();
   const handleLogin = () => {
     push("/product");
