@@ -1,5 +1,6 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import styles from "./Navbar.module.css";
+import Image from "next/image";
 
 export default function Navbar() {
   const { data }: any = useSession();
