@@ -7,8 +7,7 @@ export default function Navbar() {
     <div className={styles.navbar}>
       <div className="big">Navbar</div>
       <div>
-        {data && data.user.fullname}
-        {""}
+        {data && data.user.fullname}{" "}
         {data ? (
           <button className={styles.button} onClick={() => signOut()}>
             Sign out

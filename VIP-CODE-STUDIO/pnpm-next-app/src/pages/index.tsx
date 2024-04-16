@@ -10,6 +10,7 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
+      <h1>Home Page</h1>
       <div>Hello hendri</div>
     </>
   );
