@@ -1,15 +1,21 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import styles from "./Navbar.module.css";
 import Image from "next/image";
+import Script from "next/script";
 
 export default function Navbar() {
   const { data }: any = useSession();
   return (
     <div className={styles.navbar}>
-      <div className="big">Navbar</div>
+      <div className="big" id="title"></div>
+      <Script id="script-title" strategy="lazyOnload">
+        {`document.getElementById('title').innerHTML = 'Navbar'`}
+      </Script>
       <div className={styles.profile}>
         {data?.user?.image && (
-          <img
+          <Image
+            width={30}
+            height={30}
             src={data.user.image}
             alt={data.user.fullname}
             className={styles.avatar}
