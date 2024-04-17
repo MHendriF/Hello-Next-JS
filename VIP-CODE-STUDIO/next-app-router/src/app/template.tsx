@@ -6,10 +6,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <div>
-      <h1>Template {state}</h1>
+      {/* <h1>Template {state}</h1>
       <button onClick={() => setState(state + 1)} className="p-1 bg-red-800">
         Click
-      </button>
+      </button> */}
       {children}
     </div>
   );
