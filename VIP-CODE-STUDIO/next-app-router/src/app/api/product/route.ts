@@ -22,6 +22,20 @@ const data = [
     image:
       "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/82ebffbc-7ba5-4ebb-85d7-03d47d802bd9/killshot-2-leather-shoes-1DJNnt.png",
   },
+  {
+    id: 4,
+    name: "Celana 2",
+    price: 400000,
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/82ebffbc-7ba5-4ebb-85d7-03d47d802bd9/killshot-2-leather-shoes-1DJNnt.png",
+  },
+  {
+    id: 5,
+    name: "Celana 5",
+    price: 400000,
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/82ebffbc-7ba5-4ebb-85d7-03d47d802bd9/killshot-2-leather-shoes-1DJNnt.png",
+  },
 ];
 
 export async function GET(request: NextRequest) {
