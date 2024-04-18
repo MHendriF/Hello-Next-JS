@@ -36,6 +36,15 @@ export default function Navbar() {
               Profile
             </li>
           </Link>
+          <Link href="/dashboard">
+            <li
+              className={`mr-3 cursor-pointer ${
+                pathname === "/dashboard" ? "text-blue-300 " : "text-white"
+              }`}
+            >
+              Dashboard
+            </li>
+          </Link>
         </ul>
       </div>
       <div>
