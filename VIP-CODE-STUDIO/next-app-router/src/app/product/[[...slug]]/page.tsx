@@ -1,14 +1,17 @@
 type ProductPageProps = { params: { slug: string[] } };
 
 async function getData() {
-  //const res = await fetch("https://fakestoreapi.com/products");
-  const res = await fetch("http://localhost:3000/api/product", {
-    cache: "force-cache",
-    next: {
-      tags: ["products"],
-      //revalidate: 30,
-    },
+  const res = await fetch("https://fakestoreapi.com/products", {
+    cache: "no-store",
   });
+
+  // const res = await fetch("http://localhost:3000/api/product", {
+  //   cache: "force-cache",
+  //   next: {
+  //     tags: ["products"],
+  //     //revalidate: 30,
+  //   },
+  // });
 
   if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -18,14 +21,14 @@ async function getData() {
 export default async function ProductPage(props: ProductPageProps) {
   const { params } = props;
   const products = await getData();
-  console.log(products);
+  //console.log(products);
   return (
-    <div className="grid grid-cols-4 mt-5 place-items-center">
+    <div className="grid grid-cols-4 mt-5 place-items-center mx-4">
       {/* <h1 className="text-3xl font-bold underline">
         {params.slug ? "Detail Product Page" : "Product Page"}
       </h1> */}
-      {products.data.length > 0 &&
-        products.data.map((product: any) => (
+      {products.length > 0 &&
+        products.map((product: any) => (
           <div
             key={product.id}
             className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-5"
