@@ -36,7 +36,7 @@ export default function RegisterPage() {
 
   return (
     <div className="h-screen w-100 flex justify-center items-center">
-      <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm w-1/4 p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div className="bg-white shadow-md border border-gray-200 rounded-lg w-1/4 p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form className="space-y-6" onSubmit={handleRegister}>
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             Sign up to our platform
