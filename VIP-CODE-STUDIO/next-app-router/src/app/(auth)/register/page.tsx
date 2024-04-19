@@ -1,13 +1,47 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function RegisterPage() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const { push } = useRouter();
+
+  const handleRegister = async (e: any) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    const result = await fetch("/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify({
+        email: e.target.email.value,
+        fullname: e.target.fullname.value,
+        password: e.target.password.value,
+      }),
+    });
+
+    console.log(result.status);
+    if (result.status === 200) {
+      setIsLoading(false);
+      e.target.reset();
+      push("/login");
+    } else {
+      setIsLoading(false);
+      setError(result.status === 400 ? "Email already exists" : "");
+    }
+  };
+
   return (
     <div className="h-screen w-100 flex justify-center items-center">
-      <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <form className="space-y-6" action="#">
+      <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm w-1/4 p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <form className="space-y-6" onSubmit={handleRegister}>
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             Sign up to our platform
           </h3>
+          {error && <p className="text-sm text-red-600">{error}</p>}
           <div>
             <label
               htmlFor="fullname"
@@ -60,8 +94,9 @@ export default function RegisterPage() {
           <button
             type="submit"
             className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            disabled={isLoading}
           >
-            Sign up account
+            {isLoading ? "Loading..." : "Sign up account"}
           </button>
           <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
             Have registered?{" "}

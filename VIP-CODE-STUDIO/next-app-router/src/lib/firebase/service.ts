@@ -44,15 +44,12 @@ export async function signIn(userData: { email: string }) {
   return null;
 }
 
-export async function signUp(
-  userData: {
-    email: string;
-    fullname: string;
-    password: string;
-    role?: string;
-  },
-  callback: Function
-) {
+export async function signUp(userData: {
+  email: string;
+  fullname: string;
+  password: string;
+  role?: string;
+}) {
   const q = query(
     collection(firestore, "users"),
     where("email", "==", userData.email)
@@ -63,17 +60,16 @@ export async function signUp(
     ...doc.data(),
   }));
   if (data.length > 0) {
-    callback({ status: false, message: "Email already exists" });
+    return { status: false, statusCode: 400, message: "Email already exists" };
   } else {
     userData.password = await bcrypt.hash(userData.password, 10);
     userData.role = "member";
-    await addDoc(collection(firestore, "users"), userData)
-      .then(() => {
-        callback({ status: true, message: "Register success" });
-      })
-      .catch((error) => {
-        callback({ status: false, message: error });
-      });
+    try {
+      await addDoc(collection(firestore, "users"), userData);
+      return { status: true, statusCode: 200, message: "Register success" };
+    } catch (error) {
+      return { status: false, statusCode: 400, message: error };
+    }
   }
 }
 
