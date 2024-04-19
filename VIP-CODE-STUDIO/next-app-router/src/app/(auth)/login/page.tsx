@@ -1,29 +1,42 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
-  const handleLogin = (e: any) => {
+  const [error, setError] = useState("");
+  const { push } = useRouter();
+
+  const handleLogin = async (e: any) => {
     e.preventDefault();
 
-    console.log("currentTarget: ", e.currentTarget);
-    console.log("target: ", e.target.email.value);
-    fetch("/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
         email: e.target.email.value,
         password: e.target.password.value,
-      }),
-    });
+        callbackUrl: "/dashboard",
+      });
+      if (!res?.error) {
+        push("/dashboard");
+      } else {
+        setError("Email or password is  incorrect");
+      }
+    } catch (error: any) {
+      setError("Email or password is  incorrect");
+    }
   };
 
   return (
     <div className="h-screen w-100 flex justify-center items-center">
-      <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div className="bg-white shadow-md border border-gray-200 rounded-lg w-1/4 p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form className="space-y-6" onSubmit={handleLogin}>
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             Sign in to our platform
           </h3>
+          <p className="text-sm text-red-600">{error}</p>
           <div>
             <label
               htmlFor="email"
