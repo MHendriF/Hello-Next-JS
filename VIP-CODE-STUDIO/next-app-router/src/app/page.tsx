@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Home - MHF",
   description: "Next Js App",
   authors: [{ name: "MHendriF", url: "htttp://localhost:3000" }],
   icons: {
     icon: "/icon.svg",
+  },
+  openGraph: {
+    title: "Home - MHF",
   },
 };
 
