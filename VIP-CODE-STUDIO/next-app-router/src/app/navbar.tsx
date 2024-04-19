@@ -48,6 +48,15 @@ export default function Navbar() {
               Dashboard
             </li>
           </Link>
+          <Link href="/product">
+            <li
+              className={`mr-3 cursor-pointer ${
+                pathname === "/product" ? "text-blue-300 " : "text-white"
+              }`}
+            >
+              Product
+            </li>
+          </Link>
         </ul>
       </div>
       <div>
