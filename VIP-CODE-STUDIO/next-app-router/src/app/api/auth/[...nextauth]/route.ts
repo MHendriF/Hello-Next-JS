@@ -53,15 +53,18 @@ const authOptions: NextAuthOptions = {
           type: "google",
         };
 
-        await signInWithGoogle(data, (result: any) => {
-          if (result.status) {
-            token.email = result.data.email;
-            token.fullname = result.data.fullname;
-            token.type = result.data.type;
-            token.image = result.data.image;
-            token.role = result.data.token;
+        await signInWithGoogle(
+          data,
+          (result: { status: boolean; data: any }) => {
+            if (result.status) {
+              token.email = result.data.email;
+              token.fullname = result.data.fullname;
+              token.type = result.data.type;
+              token.image = result.data.image;
+              token.role = result.data.token;
+            }
           }
-        });
+        );
       }
       return token;
     },
