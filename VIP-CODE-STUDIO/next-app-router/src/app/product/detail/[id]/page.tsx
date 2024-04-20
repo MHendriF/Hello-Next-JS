@@ -3,7 +3,7 @@ import { getData } from "@/services/products";
 export default async function DetailProductPage(props: any) {
   const { params } = props;
   const product = await getData(
-    `http://localhost:3000/api/product/?id=${params.id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/product/?id=${params.id}`
   );
   return (
     <div className="container mx-auto my-10">

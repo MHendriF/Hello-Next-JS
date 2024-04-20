@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Home - MHF",
   description: "Next Js App",
-  authors: [{ name: "MHendriF", url: "htttp://localhost:3000" }],
+  authors: [{ name: "MHendriF", url: `${process.env.NEXT_PUBLIC_API_URL}` }],
   icons: {
     icon: "/icon.svg",
   },

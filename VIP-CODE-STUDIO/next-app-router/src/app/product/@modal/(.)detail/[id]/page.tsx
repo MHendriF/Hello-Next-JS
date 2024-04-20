@@ -7,7 +7,7 @@ const Modal = dynamic(() => import("@/components/core/modal"));
 export default async function DetailProductPage(props: any) {
   const { params } = props;
   const product = await getData(
-    `http://localhost:3000/api/product/?id=${params.id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/product/?id=${params.id}`
   );
   return (
     <Modal>
