@@ -9,7 +9,8 @@ export default function LoginPage({ searchParams }: any) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const { push } = useRouter();
-  console.log("searchParams: ", searchParams);
+  const callbackUrl = searchParams.callbackUrl || "/";
+  console.log("searchParams: ", callbackUrl);
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
@@ -20,12 +21,12 @@ export default function LoginPage({ searchParams }: any) {
         redirect: false,
         email: e.target.email.value,
         password: e.target.password.value,
-        callbackUrl: searchParams.callbackUrl,
+        callbackUrl,
       });
       if (!res?.error) {
         e.target.reset();
         setIsLoading(false);
-        push(searchParams.callbackUrl);
+        push(callbackUrl);
       } else {
         e.target.reset();
         setIsLoading(false);
